@@ -41,6 +41,9 @@ paper.id = 'paper';
 const scissors = document.createElement('button');
 scissors.id = 'scissors';
 
+const clickSound = document.createElement('audio');
+clickSound.src = 'sounds/click-sound.wav'
+
 //& Score Board
 
 let playerScore = 0;
@@ -107,67 +110,154 @@ function getComputerChoice() {
 
 //& Play the game
 
+const rockWinScisLose = document.createElement('p');
+rockWinScisLose.textContent = 'You Win! Rock break the Scissors';
+const rockLosePaperWin = document.createElement('p');
+rockLosePaperWin.textContent = 'You Lose! Paper beats Rock';
+const paperWinRockLose = document.createElement('p');
+paperWinRockLose.textContent = 'You Win! Paper beats Rock';
+const paperLoseScisWin = document.createElement('p');
+paperLoseScisWin.textContent = 'You Lose! Scissors cut the Paper';
+const scisWinPaperLose = document.createElement('p');
+scisWinPaperLose.textContent = 'You Win! Scissors cut the Paper';
+const sciLoseRockWin = document.createElement('p');
+sciLoseRockWin.textContent = 'You Lose! Rock break the Scissors';
+const even = document.createElement('p');
+even.textContent = 'Tie game!';
+
 rock.addEventListener('click', function () {
-    let computerChoice = getComputerChoice();
-    if (computerChoice == 'scissors') {
-        comments.textContent = 'You Win! Rock break the Scissors';
-        playerScore++;
-        playerCounter.textContent = playerScore;
-        if (playerScore === 5) {
-            gameover('player');
-        }
-    } else if (computerChoice == 'paper') {
-        comments.textContent = 'You Lose! Paper beats Rock';
-        computerScore++;
-        computerCounter.textContent = computerScore;
-        if (computerScore === 5) {
-            gameover('computer');
+    clickSound.play();
+    if (comments.hasChildNodes()) {
+        comments.removeChild(comments.firstChild);
+        let computerChoice = getComputerChoice();
+        if (computerChoice == 'scissors') {
+            comments.appendChild(rockWinScisLose);
+            playerScore++;
+            playerCounter.textContent = playerScore;
+            if (playerScore === 5) {
+                gameover('player');
+            }
+        } else if (computerChoice == 'paper') {
+            comments.appendChild(paperWinRockLose);
+            computerScore++;
+            computerCounter.textContent = computerScore;
+            if (computerScore === 5) {
+                gameover('computer');
+            }
+        } else {
+            comments.appendChild(even);
         }
     } else {
-        comments.textContent = 'Tie game!'
+        let computerChoice = getComputerChoice();
+        if (computerChoice == 'scissors') {
+            comments.appendChild(rockWinScisLose);
+            playerScore++;
+            playerCounter.textContent = playerScore;
+            if (playerScore === 5) {
+                gameover('player');
+            }
+        } else if (computerChoice == 'paper') {
+            comments.appendChild(paperWinRockLose);
+            computerScore++;
+            computerCounter.textContent = computerScore;
+            if (computerScore === 5) {
+                gameover('computer');
+            }
+        } else {
+            comments.appendChild(even);
+        }
     }
+
 });
 
 paper.addEventListener('click', function () {
-    let computerChoice = getComputerChoice();
-    if (computerChoice == 'rock') {
-        comments.textContent = 'You Win! Paper beats Rock';
-        playerScore++;
-        playerCounter.textContent = playerScore;
-        if (playerScore === 5) {
-            gameover('player');
-        }
-    } else if (computerChoice == 'scissors') {
-        comments.textContent = 'You Lose! Scissors cut the Paper';
-        computerScore++;
-        computerCounter.textContent = computerScore;
-        if (computerScore === 5) {
-            gameover('computer');
+    clickSound.play();
+    if (comments.hasChildNodes()) {
+        comments.removeChild(comments.firstChild);
+        let computerChoice = getComputerChoice();
+        if (computerChoice == 'rock') {
+            comments.appendChild(paperWinRockLose);
+            playerScore++;
+            playerCounter.textContent = playerScore;
+            if (playerScore === 5) {
+                gameover('player');
+            }
+        } else if (computerChoice == 'scissors') {
+            comments.appendChild(scisWinPaperLose);
+            computerScore++;
+            computerCounter.textContent = computerScore;
+            if (computerScore === 5) {
+                gameover('computer');
+            }
+        } else {
+            comments.appendChild(even);
         }
     } else {
-        comments.textContent = 'Tie game!'
+        let computerChoice = getComputerChoice();
+        if (computerChoice == 'rock') {
+            comments.appendChild(paperWinRockLose);
+            playerScore++;
+            playerCounter.textContent = playerScore;
+            if (playerScore === 5) {
+                gameover('player');
+            }
+        } else if (computerChoice == 'scissors') {
+            comments.appendChild(scisWinPaperLose);
+            computerScore++;
+            computerCounter.textContent = computerScore;
+            if (computerScore === 5) {
+                gameover('computer');
+            }
+        } else {
+            comments.appendChild(even);
+        }
     }
+
 });
 
 scissors.addEventListener('click', function () {
-    let computerChoice = getComputerChoice();
-    if (computerChoice == 'paper') {
-        comments.textContent = 'You Win! Scissors cut the Paper';
-        playerScore++;
-        playerCounter.textContent = playerScore;
-        if (playerScore === 5) {
-            gameover('player');
-        }
-    } else if (computerChoice == 'rock') {
-        comments.textContent = 'You Lose! Rock breaks the Scissors';
-        computerScore++;
-        computerCounter.textContent = computerScore;
-        if (computerScore === 5) {
-            gameover('computer');
+    clickSound.play();
+    if (comments.hasChildNodes()) {
+        comments.removeChild(comments.firstChild);
+        let computerChoice = getComputerChoice();
+        if (computerChoice == 'paper') {
+            comments.appendChild(scisWinPaperLose);
+            playerScore++;
+            playerCounter.textContent = playerScore;
+            if (playerScore === 5) {
+                gameover('player');
+            }
+        } else if (computerChoice == 'rock') {
+            comments.appendChild(rockWinScisLose);
+            computerScore++;
+            computerCounter.textContent = computerScore;
+            if (computerScore === 5) {
+                gameover('computer');
+            }
+        } else {
+            comments.appendChild(even);
         }
     } else {
-        comments.textContent = 'Tie game!'
+        let computerChoice = getComputerChoice();
+        if (computerChoice == 'paper') {
+            comments.appendChild(scisWinPaperLose);
+            playerScore++;
+            playerCounter.textContent = playerScore;
+            if (playerScore === 5) {
+                gameover('player');
+            }
+        } else if (computerChoice == 'rock') {
+            comments.appendChild(rockWinScisLose);
+            computerScore++;
+            computerCounter.textContent = computerScore;
+            if (computerScore === 5) {
+                gameover('computer');
+            }
+        } else {
+            comments.appendChild(even);
+        }
     }
+
 });
 
 //& Game End
@@ -176,8 +266,13 @@ const endGameTitle = document.createElement('h1');
 endGameTitle.id = 'end-game-title';
 endGameTitle.textContent = 'GAME OVER';
 
-const endGameText = document.createElement('p');
-endGameText.id = 'end-game-text';
+const endGameTextWin = document.createElement('p');
+endGameTextWin.id = 'end-game-text-win';
+endGameTextWin.textContent = 'You Win!'
+
+const endGameTextLose = document.createElement('p');
+endGameTextLose.id = 'end-game-text-lose';
+endGameTextLose.textContent = 'You Lose!'
 
 const playAgainButton = document.createElement('button');
 playAgainButton.id = 'play-again-button';
@@ -196,8 +291,7 @@ function gameover(text) {
         comments.remove();
         winnerSound.play();
         document.body.appendChild(endGameTitle);
-        document.body.appendChild(endGameText);
-        endGameText.textContent = 'You Win !';
+        document.body.appendChild(endGameTextWin);
         document.body.appendChild(playAgainButton);
     } else {
         container.remove();
@@ -205,15 +299,15 @@ function gameover(text) {
         comments.remove();
         loserSound.play();
         document.body.appendChild(endGameTitle);
-        document.body.appendChild(endGameText);
-        endGameText.textContent = 'You Lose !';
+        document.body.appendChild(endGameTextLose);
         document.body.appendChild(playAgainButton);
     }
 }
 
 function playAgain() {
     endGameTitle.remove();
-    endGameText.remove();
+    endGameTextWin.remove();
+    endGameTextLose.remove();
     playAgainButton.remove();
     document.body.appendChild(container);
     document.body.appendChild(scoreBoard);
@@ -232,11 +326,47 @@ function playAgain() {
 
 playAgainButton.addEventListener('click', playAgain)
 
+//& Language Buttons
 
+const turkishButton = document.getElementById('turkish-button');
 
+turkishButton.addEventListener('click', () => {
+    title.textContent = 'TAŞ KAĞIT MAKAS';
+    rockWinScisLose.textContent = 'Kazandın! Taş Makası kırdı';
+    rockLosePaperWin.textContent = 'Kaybettin! Kağıt Taşı yendi'
+    paperWinRockLose.textContent = 'Kazandın! Kağıt Taşı yendi';
+    paperLoseScisWin.textContent = 'Kaybettin! Makas Kağıdı kesti'
+    scisWinPaperLose.textContent = 'Kazandın! Makas Kağıdı kesti';
+    sciLoseRockWin.textContent = 'Kaybettin! Taş Makası kırdı'
+    even.textContent = 'Berabere!';
+    player.textContent = 'Senin Skorun';
+    computer.textContent = 'Bilgisayarın Skoru';
+    start.textContent = 'Oyuna Başla';
+    endGameTitle.textContent = 'Oyun Bitti';
+    endGameTextWin.textContent = 'Kazandın!';
+    endGameTextLose.textContent = 'Kaybettin!';
+    playAgainButton.textContent = 'Tekrar Oyna';
+})
 
+const englishButton = document.getElementById('english-button');
 
-
+englishButton.addEventListener('click', () => {
+    title.textContent = 'ROCK PAPER SCISSORS';
+    rockWinScisLose.textContent = 'You Win! Rock break the Scissors';
+    rockLosePaperWin.textContent = 'You Lose! Paper beats Rock'
+    paperWinRockLose.textContent = 'You Win! Paper beats Rock';
+    paperLoseScisWin.textContent = 'You Lose! Scissors cut the Paper'
+    scisWinPaperLose.textContent = 'You Win! Scissors cut the Paper';
+    sciLoseRockWin.textContent = 'You Lose! Rock break the Scissors'
+    even.textContent = 'Tie game!';
+    player.textContent = 'Your Score';
+    computer.textContent = 'Computer Score';
+    start.textContent = 'Start The Game';
+    endGameTitle.textContent = 'Game Over';
+    endGameTextWin.textContent = 'You Win!';
+    endGameTextLose.textContent = 'You Lose!';
+    playAgainButton.textContent = 'Play Again';
+})
 
 
 

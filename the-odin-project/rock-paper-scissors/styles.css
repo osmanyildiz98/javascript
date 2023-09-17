@@ -16,6 +16,35 @@ body {
 
 /*Game Start*/
 
+#navbar {
+    margin-top: 0;
+    align-self: flex-end;
+}
+
+#turkish-button {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+    border: none;
+    background-image: url(images/turkey.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#english-button {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 2rem;
+    border-radius: 50%;
+    border: none;
+    background-image: url(images/english.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 #game-title {
     color: #b2a27d;
     font-size: 4rem;
@@ -184,7 +213,12 @@ body {
     font-size: 2.5rem;
 }
 
-#end-game-text {
+#end-game-text-win {
+    color: #b2a27d;
+    font-size: 2.5rem;
+}
+
+#end-game-text-lose {
     color: #b2a27d;
     font-size: 2.5rem;
 }
