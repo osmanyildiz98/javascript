@@ -4,7 +4,31 @@ const title = document.getElementById('game-title');
 const container = document.querySelector('.container');
 const scoreBoard = document.getElementById('score-board');
 const comments = document.getElementById('comments');
+const catSoldier = document.getElementById('cat-soldier')
+const monitorSoldier = document.getElementById('monitor-soldier')
+const catSound = document.createElement('audio');
+const monitorSound = document.createElement('audio');
 
+catSound.src = 'sounds/cat-sound.wav';
+monitorSound.src = 'sounds/computer-sound.wav';
+
+catSoldier.addEventListener('click', () => {
+    catSound.play();
+})
+
+catSoldier.addEventListener('mouseleave', () => {
+    catSound.pause();
+    catSound.currentTime = 0;
+})
+
+monitorSoldier.addEventListener('click', () => {
+    monitorSound.play();
+})
+
+monitorSoldier.addEventListener('mouseleave', () => {
+    monitorSound.pause();
+    monitorSound.currentTime = 0;
+})
 
 //& Game Buttons
 
@@ -24,11 +48,24 @@ let computerScore = 0;
 
 const player = document.createElement('p');
 player.id = 'player-score';
-player.textContent = 'Your Score: ' + playerScore;
+player.textContent = 'Your Score';
+
+const playerCounter = document.createElement('p');
+playerCounter.id = 'player-counter';
+playerCounter.textContent = playerScore;
+
+const line = document.createElement('p');
+line.id = 'line';
+line.textContent = '-'
+
+const computerCounter = document.createElement('p');
+computerCounter.id = 'computer-counter';
+computerCounter.textContent = computerScore;
 
 const computer = document.createElement('p');
 computer.id = 'computer-score';
-computer.textContent = 'Computer Score: ' + computerScore;
+computer.textContent = 'Computer Score';
+
 
 //& Start The Game 
 
@@ -36,11 +73,19 @@ const start = document.getElementById('start');
 
 function startGame() {
     start.remove();
+    catSoldier.remove();
+    monitorSoldier.remove();
+    container.style.gap = '10rem';
+    container.style.marginTop = '4rem';
     container.appendChild(rock);
     container.appendChild(paper);
     container.appendChild(scissors);
     scoreBoard.appendChild(player);
+    scoreBoard.appendChild(playerCounter);
+    scoreBoard.appendChild(line);
+    scoreBoard.appendChild(computerCounter);
     scoreBoard.appendChild(computer);
+
 };
 
 start.addEventListener("click", startGame);
@@ -67,14 +112,14 @@ rock.addEventListener('click', function () {
     if (computerChoice == 'scissors') {
         comments.textContent = 'You Win! Rock break the Scissors';
         playerScore++;
-        player.textContent = 'You: ' + playerScore;
+        playerCounter.textContent = playerScore;
         if (playerScore === 5) {
             gameover('player');
         }
     } else if (computerChoice == 'paper') {
         comments.textContent = 'You Lose! Paper beats Rock';
         computerScore++;
-        computer.textContent = 'Computer: ' + computerScore;
+        computerCounter.textContent = computerScore;
         if (computerScore === 5) {
             gameover('computer');
         }
@@ -88,14 +133,14 @@ paper.addEventListener('click', function () {
     if (computerChoice == 'rock') {
         comments.textContent = 'You Win! Paper beats Rock';
         playerScore++;
-        player.textContent = 'You: ' + playerScore;
+        playerCounter.textContent = playerScore;
         if (playerScore === 5) {
             gameover('player');
         }
     } else if (computerChoice == 'scissors') {
         comments.textContent = 'You Lose! Scissors cut the Paper';
         computerScore++;
-        computer.textContent = 'Computer: ' + computerScore;
+        computerCounter.textContent = computerScore;
         if (computerScore === 5) {
             gameover('computer');
         }
@@ -109,14 +154,14 @@ scissors.addEventListener('click', function () {
     if (computerChoice == 'paper') {
         comments.textContent = 'You Win! Scissors cut the Paper';
         playerScore++;
-        player.textContent = 'You: ' + playerScore;
+        playerCounter.textContent = playerScore;
         if (playerScore === 5) {
             gameover('player');
         }
     } else if (computerChoice == 'rock') {
         comments.textContent = 'You Lose! Rock breaks the Scissors';
         computerScore++;
-        computer.textContent = 'Computer: ' + computerScore;
+        computerCounter.textContent = computerScore;
         if (computerScore === 5) {
             gameover('computer');
         }
@@ -138,11 +183,18 @@ const playAgainButton = document.createElement('button');
 playAgainButton.id = 'play-again-button';
 playAgainButton.textContent = 'Play Again';
 
+const winnerSound = document.createElement('audio');
+winnerSound.src = 'sounds/winner.wav';
+
+const loserSound = document.createElement('audio');
+loserSound.src = 'sounds/loser.wav'
+
 function gameover(text) {
     if (text == 'player') {
         container.remove();
         scoreBoard.remove();
         comments.remove();
+        winnerSound.play();
         document.body.appendChild(endGameTitle);
         document.body.appendChild(endGameText);
         endGameText.textContent = 'You Win !';
@@ -151,6 +203,7 @@ function gameover(text) {
         container.remove();
         scoreBoard.remove();
         comments.remove();
+        loserSound.play();
         document.body.appendChild(endGameTitle);
         document.body.appendChild(endGameText);
         endGameText.textContent = 'You Lose !';
@@ -165,11 +218,14 @@ function playAgain() {
     document.body.appendChild(container);
     document.body.appendChild(scoreBoard);
     scoreBoard.appendChild(player);
+    scoreBoard.appendChild(playerCounter);
     playerScore = 0;
-    player.textContent = 'Your Score: ' + playerScore;
-    scoreBoard.appendChild(computer);
+    playerCounter.textContent = playerScore;
+    scoreBoard.appendChild(line);
+    scoreBoard.appendChild(computerCounter);
     computerScore = 0;
-    computer.textContent = 'Computer Score: ' + computerScore;
+    computerCounter.textContent = computerScore;
+    scoreBoard.appendChild(computer);
     document.body.appendChild(comments);
     comments.textContent = ''
 }

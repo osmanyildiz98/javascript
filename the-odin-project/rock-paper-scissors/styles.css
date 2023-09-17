@@ -14,29 +14,16 @@ body {
     font-family: 'Caveat', cursive;
 }
 
+/*Game Start*/
+
 #game-title {
-    color: #95958F;
-    font-size: 3rem;
-}
-
-#comments {
-    font-size: 2rem;
-    color: #95958F;
-}
-
-#player-score {
-    font-size: 2rem;
-    color: #95958F;
-}
-
-#computer-score {
-    font-size: 2rem;
-    color: #95958F;
+    color: #b2a27d;
+    font-size: 4rem;
 }
 
 @keyframes flashing {
     0% {
-        background-color: #95958F;
+        background-color: #b2a27d;
     }
 
     50% {
@@ -46,16 +33,23 @@ body {
     }
 
     100% {
-        background-color: #95958F;
+        background-color: #b2a27d;
     }
 
 }
 
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20rem;
+}
+
 #start {
-    border: 1px solid #95958F;
+    border: 1px solid #b2a27d;
     border-radius: 2rem;
     padding: 1rem;
-    background-color: #95958F;
+    background-color: #b2a27d;
     color: #141211;
     font-family: 'Caveat', cursive;
     font-size: 2rem;
@@ -66,11 +60,31 @@ body {
     animation: flashing 3s infinite;
 }
 
-.container {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+#cat-soldier {
+    width: 18rem;
+    height: 18rem;
+    border-radius: 50%;
+    transition: transform 1s;
 }
+
+#cat-soldier:hover {
+    transform: translateY(-2rem);
+    box-shadow: 0 8px 16px #b2a27d;
+}
+
+#monitor-soldier {
+    width: 18rem;
+    height: 18rem;
+    border-radius: 50%;
+    transition: transform 1s;
+}
+
+#monitor-soldier:hover {
+    transform: translateY(-2rem);
+    box-shadow: 0 8px 16px #b2a27d;
+}
+
+/*Game Playing*/
 
 #rock {
     width: 10rem;
@@ -79,12 +93,16 @@ body {
     background-position: center;
     background-size: auto;
     background-repeat: no-repeat;
-    background-color: #95958F;
-    border: 1px solid #95958F;
+    background-color: #b2a27d;
+    border: 1px solid #b2a27d;
     border-radius: 0.5rem;
+    transition: transform 1s;
 }
 
-
+#rock:hover {
+    transform: translateY(-1.5rem);
+    box-shadow: 0 8px 16px #b2a27d;
+}
 
 #paper {
     width: 10rem;
@@ -93,12 +111,16 @@ body {
     background-position: center;
     background-size: auto;
     background-repeat: no-repeat;
-    background-color: #95958F;
-    border: 1px solid #95958F;
+    background-color: #b2a27d;
+    border: 1px solid #b2a27d;
     border-radius: 0.5rem;
+    transition: transform 1s;
 }
 
-
+#paper:hover {
+    transform: translateY(-1.5rem);
+    box-shadow: 0 8px 16px #b2a27d;
+}
 
 #scissors {
     width: 10rem;
@@ -107,26 +129,71 @@ body {
     background-position: center;
     background-size: auto;
     background-repeat: no-repeat;
-    background-color: #95958F;
-    border: 1px solid #95958F;
+    background-color: #b2a27d;
+    border: 1px solid #b2a27d;
     border-radius: 0.5rem;
+    transition: transform 1s;
 }
 
+#scissors:hover {
+    transform: translateY(-1.5rem);
+    box-shadow: 0 8px 16px #b2a27d;
+}
+
+#score-board {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+    padding-bottom: 0;
+}
+
+#player-score {
+    font-size: 2rem;
+    color: #b2a27d;
+}
+
+#player-counter {
+    font-size: 5rem;
+    color: #b2a27d;
+}
+
+#line {
+    font-size: 5rem;
+    color: #b2a27d;
+}
+
+#computer-counter {
+    font-size: 5rem;
+    color: #b2a27d;
+}
+
+#computer-score {
+    font-size: 2rem;
+    color: #b2a27d;
+}
+
+#comments {
+    font-size: 2rem;
+    color: #b2a27d;
+}
+
+/* End Game */
+
 #end-game-title {
-    color: #95958F;
+    color: #b2a27d;
     font-size: 2.5rem;
 }
 
 #end-game-text {
-    color: #95958F;
-    font-size: 2rem;
+    color: #b2a27d;
+    font-size: 2.5rem;
 }
 
 #play-again-button {
-    border: 1px solid #95958F;
+    border: 1px solid #b2a27d;
     border-radius: 3rem;
     padding: 0.5rem;
-    background-color: #95958F;
+    background-color: #b2a27d;
     color: #141211;
     font-family: 'Caveat', cursive;
     font-size: 2rem;
