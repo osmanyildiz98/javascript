@@ -59,18 +59,22 @@ colorPicker.addEventListener('input', () => {
 //& Button Reset
 
 function resetButtons() {
-    pencil.style.backgroundColor = ''
-    rainbow.style.backgroundColor = ''
-    eraser.style.backgroundColor = ''
-    clear.style.backgroundColor = ''
-
+    pencil.style.backgroundColor = '';
+    pencil.style.color = '';
+    rainbow.style.backgroundColor = '';
+    rainbow.style.color = '';
+    eraser.style.backgroundColor = '';
+    eraser.style.color = '';
+    clear.style.backgroundColor = '';
+    clear.style.color = ''
 };
 
 //& Pencil Button
 
 pencil.addEventListener('click', () => {
     resetButtons();
-    pencil.style.backgroundColor = 'red';
+    pencil.style.backgroundColor = 'cadetblue';
+    pencil.style.color = 'beige';
 
     sketchPart.addEventListener('click', (e) => {
         if (e.target.classList.contains('etch')) {
@@ -118,7 +122,8 @@ function randomColor() {
 
 rainbow.addEventListener('click', () => {
     resetButtons();
-    rainbow.style.backgroundColor = 'red';
+    rainbow.style.backgroundColor = 'cadetblue';
+    rainbow.style.color = 'beige';
 
     sketchPart.addEventListener('click', (e) => {
         if (e.target.classList.contains('etch')) {
@@ -148,7 +153,9 @@ rainbow.addEventListener('click', () => {
 
 eraser.addEventListener('click', () => {
     resetButtons();
-    eraser.style.backgroundColor = 'red';
+    eraser.style.backgroundColor = 'cadetblue';
+    eraser.style.color = 'beige';
+
     let mouseDown = false;
 
     sketchPart.addEventListener('click', (e) => {
@@ -178,9 +185,11 @@ eraser.addEventListener('click', () => {
 
 clear.addEventListener('click', () => {
     resetButtons();
-    clear.style.backgroundColor = 'red';
+    clear.style.backgroundColor = 'cadetblue';
+    clear.style.color = 'beige';
     setTimeout(() => {
         clear.style.backgroundColor = '';
+        clear.style.color = ''
     }, 100);
     sketchPart.querySelectorAll('.etch').forEach((element) => {
         element.style.backgroundColor = '#FFFFFF'
