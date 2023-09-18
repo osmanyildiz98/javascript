@@ -1,0 +1,190 @@
+//& HTML elements
+
+const colorPicker = document.getElementById('color-picker');
+const pencil = document.getElementById('pencil');
+const rainbow = document.getElementById('rainbow');
+const eraser = document.getElementById('eraser');
+const clear = document.getElementById('clear');
+const squareNumber = document.getElementById('square-number');
+const squareLabel = document.getElementById('square-label');
+squareLabel.textContent = `${squareNumber.value} x ${squareNumber.value}`
+const sketchPart = document.getElementById('sketch-part');
+
+//& Rainbow Title
+
+const title = document.getElementById('title');
+const titleArray = ['E', 't', 'c', 'h', ' ', 'A', ' ', 'S', 'k', 'e', 't', 'c', 'h'];
+
+for (let i = 0; i < titleArray.length; i++) {
+    const titleWord = document.createElement('span');
+    titleWord.textContent = titleArray[i];
+    titleWord.style.color = randomColor();
+    title.appendChild(titleWord);
+}
+
+//& Selecting square number
+
+squareNumber.addEventListener('input', () => {
+    const selectedValue = squareNumber.value;
+    const currentValue = sketchPart.querySelectorAll('div').length
+    squareLabel.textContent = `${selectedValue} x ${selectedValue}`;
+
+    if (currentValue !== selectedValue * selectedValue) {
+        for (let i = 0; i < currentValue; i++) {
+            const firstChild = sketchPart.firstChild;
+            sketchPart.removeChild(firstChild);
+        }
+
+        const valueToNumber = parseInt(selectedValue);
+        sketchPart.style.gridTemplateColumns = `repeat(${valueToNumber}, 1fr)`;
+        sketchPart.style.gridTemplateRows = `repeat(${valueToNumber}, 1fr)`;
+
+        for (let i = 0; i < valueToNumber * valueToNumber; i++) {
+            const square = document.createElement('div');
+            square.className = 'etch'
+            sketchPart.appendChild(square);
+        }
+    }
+
+});
+
+//& Color Selector
+
+let currentColor = colorPicker.value;
+
+colorPicker.addEventListener('input', () => {
+    currentColor = colorPicker.value;
+});
+
+//& Button Reset
+
+function resetButtons() {
+    pencil.style.backgroundColor = ''
+    rainbow.style.backgroundColor = ''
+    eraser.style.backgroundColor = ''
+    clear.style.backgroundColor = ''
+
+};
+
+//& Pencil Button
+
+pencil.addEventListener('click', () => {
+    resetButtons();
+    pencil.style.backgroundColor = 'red';
+
+    sketchPart.addEventListener('click', (e) => {
+        if (e.target.classList.contains('etch')) {
+            e.target.style.backgroundColor = currentColor;
+        }
+    });
+
+    let mouseDown = false;
+
+    sketchPart.addEventListener('mousedown', (e) => {
+        mouseDown = true;
+    });
+
+    sketchPart.addEventListener('mouseup', () => {
+        mouseDown = false;
+    });
+
+    sketchPart.addEventListener('mouseover', (e) => {
+        if (mouseDown && e.target.classList.contains('etch')) {
+            e.target.style.backgroundColor = currentColor;
+        }
+    });
+
+});
+
+
+
+//& Rainbow Button
+
+function randomColor() {
+    const array = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += array[Math.floor(Math.random() * 16)]
+    };
+    if (color === '#28282B') {
+        for (let i = 0; i < 6; i++) {
+            color += array[Math.floor(Math.random() * 16)]
+        };
+    } else {
+        return color;
+    }
+
+}
+
+rainbow.addEventListener('click', () => {
+    resetButtons();
+    rainbow.style.backgroundColor = 'red';
+
+    sketchPart.addEventListener('click', (e) => {
+        if (e.target.classList.contains('etch')) {
+            e.target.style.backgroundColor = randomColor();
+        }
+    });
+
+    let mouseDown = false;
+
+    sketchPart.addEventListener('mousedown', () => {
+        mouseDown = true;
+    });
+
+    sketchPart.addEventListener('mouseup', () => {
+        mouseDown = false;
+    });
+
+    sketchPart.addEventListener('mouseover', (e) => {
+        if (mouseDown && e.target.classList.contains('etch')) {
+            e.target.style.backgroundColor = randomColor();
+        }
+    });
+
+});
+
+//& Eraser Button
+
+eraser.addEventListener('click', () => {
+    resetButtons();
+    eraser.style.backgroundColor = 'red';
+    let mouseDown = false;
+
+    sketchPart.addEventListener('click', (e) => {
+        if (e.target.classList.contains('etch')) {
+            e.target.style.backgroundColor = '#FFFFFF';
+        }
+    })
+
+    sketchPart.addEventListener('mousedown', () => {
+        mouseDown = true;
+
+    });
+
+    sketchPart.addEventListener('mouseup', () => {
+        mouseDown = false;
+    });
+
+    sketchPart.addEventListener('mouseover', (e) => {
+        if (mouseDown && e.target.classList.contains('etch')) {
+            e.target.style.backgroundColor = '#FFFFFF';
+        }
+    });
+
+});
+
+//& Clear Button
+
+clear.addEventListener('click', () => {
+    resetButtons();
+    clear.style.backgroundColor = 'red';
+    setTimeout(() => {
+        clear.style.backgroundColor = '';
+    }, 100);
+    sketchPart.querySelectorAll('.etch').forEach((element) => {
+        element.style.backgroundColor = '#FFFFFF'
+    })
+
+});
+
