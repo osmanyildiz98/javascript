@@ -81,25 +81,33 @@ pencil.addEventListener('click', () => {
     pencil.style.backgroundColor = 'cadetblue';
     pencil.style.color = 'beige';
 
+    let isPencil = false;
+
     sketchPart.addEventListener('click', (e) => {
         if (e.target.classList.contains('etch')) {
+            if (isPencil) {
+                e.target.style.backgroundColor = currentColor;
+            }
+        }
+    });
+
+    sketchPart.addEventListener('mousedown', (e) => {
+        isPencil = true;
+    });
+
+    sketchPart.addEventListener('mouseup', () => {
+        isPencil = false;
+    });
+
+    sketchPart.addEventListener('mouseover', (e) => {
+        if (isPencil && e.target.classList.contains('etch')) {
             e.target.style.backgroundColor = currentColor;
         }
     });
 
-    let mouseDown = false;
-
-    sketchPart.addEventListener('mousedown', (e) => {
-        mouseDown = true;
-    });
-
-    sketchPart.addEventListener('mouseup', () => {
-        mouseDown = false;
-    });
-
-    sketchPart.addEventListener('mouseover', (e) => {
-        if (mouseDown && e.target.classList.contains('etch')) {
-            e.target.style.backgroundColor = currentColor;
+    document.addEventListener('click', (e) => {
+        if (!sketchPart.contains(e.target)) {
+            isPencil = false;
         }
     });
 
@@ -130,25 +138,33 @@ rainbow.addEventListener('click', () => {
     rainbow.style.backgroundColor = 'cadetblue';
     rainbow.style.color = 'beige';
 
+    let isRainbow = false;
+
     sketchPart.addEventListener('click', (e) => {
         if (e.target.classList.contains('etch')) {
+            if (isRainbow) {
+                e.target.style.backgroundColor = randomColor();
+            };
+        };
+    });
+
+    sketchPart.addEventListener('mousedown', () => {
+        isRainbow = true;
+    });
+
+    sketchPart.addEventListener('mouseup', () => {
+        isRainbow = false;
+    });
+
+    sketchPart.addEventListener('mouseover', (e) => {
+        if (isRainbow && e.target.classList.contains('etch')) {
             e.target.style.backgroundColor = randomColor();
         }
     });
 
-    let mouseDown = false;
-
-    sketchPart.addEventListener('mousedown', () => {
-        mouseDown = true;
-    });
-
-    sketchPart.addEventListener('mouseup', () => {
-        mouseDown = false;
-    });
-
-    sketchPart.addEventListener('mouseover', (e) => {
-        if (mouseDown && e.target.classList.contains('etch')) {
-            e.target.style.backgroundColor = randomColor();
+    document.addEventListener('click', (e) => {
+        if (!sketchPart.contains(e.target)) {
+            isRainbow = false;
         }
     });
 
@@ -161,27 +177,35 @@ eraser.addEventListener('click', () => {
     eraser.style.backgroundColor = 'cadetblue';
     eraser.style.color = 'beige';
 
+    let isErasing = false;
+
     sketchPart.addEventListener('click', (e) => {
         if (e.target.classList.contains('etch')) {
-            e.target.style.backgroundColor = '#FFFFFF';
+            if (isErasing) {
+                e.target.style.backgroundColor = '#FFFFFF';
+            }
         }
     });
 
-    let mouseDown = false;
-
 
     sketchPart.addEventListener('mousedown', () => {
-        mouseDown = true;
+        isErasing = true;
 
     });
 
     sketchPart.addEventListener('mouseup', () => {
-        mouseDown = false;
+        isErasing = false;
     });
 
     sketchPart.addEventListener('mouseover', (e) => {
-        if (mouseDown && e.target.classList.contains('etch')) {
+        if (isErasing && e.target.classList.contains('etch')) {
             e.target.style.backgroundColor = '#FFFFFF';
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!sketchPart.contains(e.target)) {
+            isErasing = false;
         }
     });
 
