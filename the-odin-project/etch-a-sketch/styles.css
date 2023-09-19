@@ -43,8 +43,8 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -65,10 +65,9 @@ body {
     background-color: beige;
     border: none;
     width: 150px;
-    height: 40px;
+    height: 35px;
     font-size: 24px;
     font-family: 'Lobster', cursive;
-
 }
 
 #rainbow {
@@ -76,10 +75,9 @@ body {
     background-color: beige;
     border: none;
     width: 150px;
-    height: 40px;
+    height: 35px;
     font-size: 24px;
     font-family: 'Lobster', cursive;
-
 }
 
 #eraser {
@@ -87,10 +85,9 @@ body {
     background-color: beige;
     border: none;
     width: 150px;
-    height: 40px;
+    height: 35px;
     font-size: 24px;
     font-family: 'Lobster', cursive;
-
 }
 
 #clear {
@@ -98,10 +95,19 @@ body {
     background-color: beige;
     border: none;
     width: 150px;
-    height: 40px;
+    height: 35px;
     font-size: 24px;
     font-family: 'Lobster', cursive;
+}
 
+#grid {
+    color: cadetblue;
+    background-color: beige;
+    border: none;
+    width: 150px;
+    height: 35px;
+    font-size: 24px;
+    font-family: 'Lobster', cursive;
 }
 
 #square-number {
@@ -146,20 +152,19 @@ body {
     align-self: center;
     color: cadetblue;
     font-family: 'Lobster', cursive;
-    font-size: 28px;
+    font-size: 24px;
 }
 
 #sketch-part {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
-    grid-gap: 1px;
     width: 480px;
     height: 480px;
     background-color: white;
 }
 
-#sketch-part>* {
+#sketch-part * {
     border: 1px solid black;
 }
 

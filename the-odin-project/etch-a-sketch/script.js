@@ -5,6 +5,8 @@ const pencil = document.getElementById('pencil');
 const rainbow = document.getElementById('rainbow');
 const eraser = document.getElementById('eraser');
 const clear = document.getElementById('clear');
+const grid = document.getElementById('grid');
+grid.textContent = 'Show Grid';
 const squareNumber = document.getElementById('square-number');
 const squareLabel = document.getElementById('square-label');
 squareLabel.textContent = `${squareNumber.value} x ${squareNumber.value}`
@@ -25,6 +27,9 @@ for (let i = 0; i < titleArray.length; i++) {
 //& Selecting square number
 
 squareNumber.addEventListener('input', () => {
+    grid.textContent = 'Show Grid';
+    grid.style.backgroundColor = 'beige';
+    grid.style.color = 'cadetblue';
     const selectedValue = squareNumber.value;
     const currentValue = sketchPart.querySelectorAll('div').length
     squareLabel.textContent = `${selectedValue} x ${selectedValue}`;
@@ -156,13 +161,14 @@ eraser.addEventListener('click', () => {
     eraser.style.backgroundColor = 'cadetblue';
     eraser.style.color = 'beige';
 
-    let mouseDown = false;
-
     sketchPart.addEventListener('click', (e) => {
         if (e.target.classList.contains('etch')) {
             e.target.style.backgroundColor = '#FFFFFF';
         }
-    })
+    });
+
+    let mouseDown = false;
+
 
     sketchPart.addEventListener('mousedown', () => {
         mouseDown = true;
@@ -191,9 +197,29 @@ clear.addEventListener('click', () => {
         clear.style.backgroundColor = '';
         clear.style.color = ''
     }, 100);
-    sketchPart.querySelectorAll('.etch').forEach((element) => {
-        element.style.backgroundColor = '#FFFFFF'
-    })
+    sketchPart.querySelectorAll('.etch').forEach((e) => {
+        e.style.backgroundColor = '#FFFFFF'
+    });
 
+});
+
+//& Grid Button 
+
+grid.addEventListener('click', () => {
+    if (grid.textContent === 'Show Grid') {
+        grid.textContent = 'Hide Grid';
+        grid.style.backgroundColor = 'cadetblue';
+        grid.style.color = 'beige';
+        sketchPart.querySelectorAll('.etch').forEach((e) => {
+            e.style.border = 'none';
+        });
+    } else {
+        grid.textContent = 'Show Grid';
+        grid.style.backgroundColor = 'beige';
+        grid.style.color = 'cadetblue';
+        sketchPart.querySelectorAll('.etch').forEach((e) => {
+            e.style.border = '1px solid black';
+        });
+    }
 });
 
