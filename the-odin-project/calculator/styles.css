@@ -18,6 +18,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    background-color: #F6F1E9;
 }
 
 .content {
@@ -37,7 +38,7 @@ body {
     width: 410px;
     height: 100px;
     border-radius: 10px;
-    background-color: #F6F1E9;
+    background-color: #B4B4B3;
 }
 
 #clear {
@@ -64,7 +65,20 @@ div button {
     font-family: 'digital-clock-font';
     font-size: 24px;
     font-weight: bold;
+    transition: transform 0.3s;
+}
 
+div button:hover {
+    transform: translateY(-0.3rem);
+    background-color: #219C90;
+}
+
+#clear:hover {
+    background-color: #219C90;
+}
+
+#delete:hover {
+    background-color: #219C90;
 }
 
 .footer {
