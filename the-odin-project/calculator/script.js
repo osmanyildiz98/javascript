@@ -21,6 +21,7 @@ const multiple = document.getElementById('multiple');
 const subtraction = document.getElementById('subtraction');
 const sum = document.getElementById('sum');
 const equal = document.getElementById('equal');
+const allButton = document.querySelector('.all-button');
 
 //$ ==> Variables and Flags <==
 
@@ -215,173 +216,219 @@ dlt.addEventListener('click', () => {
     }
 });
 
-//$ ==> Keyboard(Numbers) <==
+//$ ==> Keyboard Animation <==
 
-document.addEventListener('keydown', (event) => {
-    if (event.key === '9') {
-        appendNumber('9');
+const audio = document.createElement('audio');
+audio.src = 'audio/click.wav';
+
+function playClick() {
+    audio.play();
+}
+
+function styleKey(key) {
+    const button = document.getElementById(key);
+    if (button) {
+        button.style.backgroundColor = '#219C90';
+        button.style.transition = 'transform 0.3s';
+        button.style.transform = 'translateY(-0.5rem)';
+        playClick();
     }
-});
+};
 
-document.addEventListener('keydown', (event) => {
-    if (event.key === '8') {
-        appendNumber('8');
+function removeAll(key) {
+    const button = document.getElementById(key);
+    if (button) {
+        button.style.backgroundColor = '#E9B824';
+        button.style.transform = 'translateY(0)';
     }
-});
+};
 
-document.addEventListener('keydown', (event) => {
-    if (event.key === '7') {
-        appendNumber('7');
+function removeClear() {
+    const button = document.getElementById('clear');
+    if (button) {
+        button.style.backgroundColor = '#F05454';
+        button.style.transform = 'translateY(0)';
     }
-});
+};
 
-document.addEventListener('keydown', (event) => {
-    if (event.key === '6') {
-        appendNumber('6');
+function removeDelete() {
+    const button = document.getElementById('delete');
+    if (button) {
+        button.style.backgroundColor = '#829460';
+        button.style.transform = 'translateY(0)';
     }
-});
+};
+
+//$ ==> Keyboard <==
+
+let keyDownActive = true;
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === '5') {
-        appendNumber('5');
-    }
-});
+    if (keyDownActive) {
 
-document.addEventListener('keydown', (event) => {
-    if (event.key === '4') {
-        appendNumber('4');
-    }
-});
+        //$ ==> Numbers <==
 
-document.addEventListener('keydown', (event) => {
-    if (event.key === '3') {
-        appendNumber('3');
-    }
-});
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === '2') {
-        appendNumber('2');
-    }
-});
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === '1') {
-        appendNumber('1');
-    }
-});
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === '0') {
-        if (bottomNumber.textContent.charAt(0) !== '0' || bottomNumber.textContent.charAt(1) == '.') {
-            existingBottomNumber += '0';
-            bottomNumber.textContent = existingBottomNumber;
+        if (event.key === '9') {
+            appendNumber('9');
+            styleKey('nine');
         }
-    }
-});
-
-//$ ==> Keyboard(Dot) <==
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === '.' || event.key === ',') {
-        if (bottomNumber.textContent == '0') {
-            existingBottomNumber = '0.';
-            bottomNumber.textContent = existingBottomNumber;
-        } else if (bottomNumber.textContent.includes('.')) {
-
-        } else {
-            existingBottomNumber += '.';
-            bottomNumber.textContent = existingBottomNumber;
+        else if (event.key === '8') {
+            appendNumber('8');
+            styleKey('eight');
         }
-    }
-});
-
-//$ ==> Keyboard(Operators) <==
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === '+') {
-        appendOperator('+');
-    }
-});
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === '-') {
-        appendOperator('-');
-    }
-});
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === '*') {
-        appendOperator('*');
-    }
-});
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === '/') {
-        appendOperator('/');
-    }
-});
-
-//$ ==> Keyboard(Equal) <==
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        isClickedEqual = true;
-        let result = bottomNumber.textContent;
-        if (sign == ' ') {
-            result;
+        else if (event.key === '7') {
+            appendNumber('7');
+            styleKey('seven');
         }
-        else if (sign == '+') {
-            result = Number(topNumber.textContent) + Number(bottomNumber.textContent);
-            topNumber.textContent = '';
-            operatorSign.textContent = '';
+        else if (event.key === '6') {
+            appendNumber('6');
+            styleKey('six');
         }
-        else if (sign == '-') {
-            result = Number(topNumber.textContent) - Number(bottomNumber.textContent);
-            topNumber.textContent = '';
-            operatorSign.textContent = '';
+        else if (event.key === '5') {
+            appendNumber('5');
+            styleKey('five');
         }
-        else if (sign == '*') {
-            result = Number(topNumber.textContent) * Number(bottomNumber.textContent);
-            topNumber.textContent = '';
-            operatorSign.textContent = '';
+        else if (event.key === '4') {
+            appendNumber('4');
+            styleKey('four');
         }
-        else if (sign == '/') {
-            result = Number(topNumber.textContent) / Number(bottomNumber.textContent);
-            topNumber.textContent = '';
-            operatorSign.textContent = '';
+        else if (event.key === '3') {
+            appendNumber('3');
+            styleKey('three')
         }
-        else {
-
+        else if (event.key === '2') {
+            appendNumber('2');
+            styleKey('two');
+        }
+        else if (event.key === '1') {
+            appendNumber('1');
+            styleKey('one');
+        }
+        else if (event.key === '0') {
+            if (bottomNumber.textContent.charAt(0) !== '0' || bottomNumber.textContent.charAt(1) == '.') {
+                existingBottomNumber += '0';
+                bottomNumber.textContent = existingBottomNumber;
+            }
+            styleKey('zero');
         }
 
-        bottomNumber.textContent = result;
-    }
-});
+        //$ ==> Dot <==
 
-//$ ==> Keybord(Clear) <==
+        else if (event.key === '.' || event.key === ',') {
+            if (bottomNumber.textContent == '0') {
+                existingBottomNumber = '0.';
+                bottomNumber.textContent = existingBottomNumber;
+            } else if (bottomNumber.textContent.includes('.')) {
 
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Delete') {
-        existingBottomNumber = '';
-        bottomNumber.textContent = '0';
-        topNumber.textContent = '';
-        operatorSign.textContent = '';
-        firstClick = true;
-        isClickedEqual = false;
-    }
-});
+            } else {
+                existingBottomNumber += '.';
+                bottomNumber.textContent = existingBottomNumber;
+            }
+            styleKey('dot');
+        }
 
-//$ ==> Keybord(Delete) <==
+        //$ ==> Operators <==
 
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Backspace') {
-        if (bottomNumber.textContent.length > 2) {
-            bottomNumber.textContent = bottomNumber.textContent.slice(0, bottomNumber.textContent.length - 1);
-            existingBottomNumber = bottomNumber.textContent;
-        } else {
+        else if (event.key === '+') {
+            appendOperator('+');
+            styleKey('sum');
+        }
+        else if (event.key === '-') {
+            appendOperator('-');
+            styleKey('subtraction');
+        }
+        else if (event.key === '*') {
+            appendOperator('*');
+            styleKey('multiple');
+        }
+        else if (event.key === '/') {
+            appendOperator('/');
+            styleKey('divide');
+        }
+
+        //$ ==> Equal <==
+
+        else if (event.key === 'Enter' || event.key === '=') {
+            isClickedEqual = true;
+            let result = bottomNumber.textContent;
+            if (sign == ' ') {
+                result;
+            }
+            else if (sign == '+') {
+                result = Number(topNumber.textContent) + Number(bottomNumber.textContent);
+                topNumber.textContent = '';
+                operatorSign.textContent = '';
+            }
+            else if (sign == '-') {
+                result = Number(topNumber.textContent) - Number(bottomNumber.textContent);
+                topNumber.textContent = '';
+                operatorSign.textContent = '';
+            }
+            else if (sign == '*') {
+                result = Number(topNumber.textContent) * Number(bottomNumber.textContent);
+                topNumber.textContent = '';
+                operatorSign.textContent = '';
+            }
+            else if (sign == '/') {
+                result = Number(topNumber.textContent) / Number(bottomNumber.textContent);
+                topNumber.textContent = '';
+                operatorSign.textContent = '';
+            }
+            else {
+
+            }
+
+            bottomNumber.textContent = result;
+            styleKey('equal');
+        }
+
+        //$ ==> Clear <==
+
+        else if (event.key === 'Delete') {
+            existingBottomNumber = '';
             bottomNumber.textContent = '0';
-            existingBottomNumber = ' ';
+            topNumber.textContent = '';
+            operatorSign.textContent = '';
+            firstClick = true;
+            isClickedEqual = false;
+            styleKey('clear');
+        }
+
+        //$ ==> Delete <==
+
+        else if (event.key === 'Backspace') {
+            if (bottomNumber.textContent.length > 2) {
+                bottomNumber.textContent = bottomNumber.textContent.slice(0, bottomNumber.textContent.length - 1);
+                existingBottomNumber = bottomNumber.textContent;
+            } else {
+                bottomNumber.textContent = '0';
+                existingBottomNumber = ' ';
+            }
+            styleKey('delete');
         }
     }
 });
+
+document.addEventListener('keyup', () => {
+    if (keyDownActive) {
+        removeAll('nine');
+        removeAll('eight');
+        removeAll('seven');
+        removeAll('six');
+        removeAll('five');
+        removeAll('four');
+        removeAll('three');
+        removeAll('two');
+        removeAll('one');
+        removeAll('zero');
+        removeAll('sum');
+        removeAll('subtraction');
+        removeAll('multiple');
+        removeAll('divide');
+        removeAll('dot');
+        removeAll('equal');
+        removeClear();
+        removeDelete();
+
+    }
+})
