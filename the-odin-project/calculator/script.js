@@ -50,38 +50,47 @@ function appendNumber(number) {
 
 nine.addEventListener('click', () => {
     appendNumber('9');
+    playClick();
 });
 
 eight.addEventListener('click', () => {
     appendNumber('8');
+    playClick();
 });
 
 seven.addEventListener('click', () => {
     appendNumber('7');
+    playClick();
 });
 
 six.addEventListener('click', () => {
     appendNumber('6');
+    playClick();
 });
 
 five.addEventListener('click', () => {
     appendNumber('5');
+    playClick();
 });
 
 four.addEventListener('click', () => {
     appendNumber('4');
+    playClick();
 });
 
 three.addEventListener('click', () => {
     appendNumber('3');
+    playClick();
 });
 
 two.addEventListener('click', () => {
     appendNumber('2');
+    playClick();
 });
 
 one.addEventListener('click', () => {
     appendNumber('1');
+    playClick();
 });
 
 //$ ==> Zero Button <==
@@ -91,6 +100,7 @@ zero.addEventListener('click', () => {
         existingBottomNumber += '0';
         bottomNumber.textContent = existingBottomNumber;
     }
+    playClick();
 });
 
 //$ ==> Dot Button <==
@@ -105,6 +115,7 @@ dot.addEventListener('click', () => {
         existingBottomNumber += '.';
         bottomNumber.textContent = existingBottomNumber;
     }
+    playClick();
 });
 
 //$ ==> Operator Append Function <==
@@ -144,18 +155,22 @@ function appendOperator(operator) {
 
 sum.addEventListener('click', () => {
     appendOperator('+');
+    playClick();
 });
 
 subtraction.addEventListener('click', () => {
     appendOperator('-');
+    playClick();
 });
 
 multiple.addEventListener('click', () => {
     appendOperator('*');
+    playClick();
 });
 
 divide.addEventListener('click', () => {
-    appendOperator('/')
+    appendOperator('/');
+    playClick();
 });
 
 //$ ==> Equal Button <==
@@ -191,6 +206,7 @@ equal.addEventListener('click', () => {
     }
 
     bottomNumber.textContent = result;
+    playClick();
 });
 
 //$ ==> Clear Button <==
@@ -202,6 +218,7 @@ clear.addEventListener('click', () => {
     operatorSign.textContent = '';
     firstClick = true;
     isClickedEqual = false;
+    playClick();
 });
 
 //$ ==> Delete Button <==
@@ -214,6 +231,7 @@ dlt.addEventListener('click', () => {
         bottomNumber.textContent = '0';
         existingBottomNumber = ' ';
     }
+    playClick();
 });
 
 //$ ==> Keyboard Animation <==

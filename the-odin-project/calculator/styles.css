@@ -136,6 +136,7 @@ div button {
 div button:hover {
     transform: translateY(-0.3rem);
     background-color: #219C90;
+    border: none;
 }
 
 #clear:hover {
