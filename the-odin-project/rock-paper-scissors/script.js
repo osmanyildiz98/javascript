@@ -138,7 +138,7 @@ rock.addEventListener('click', function () {
                 gameover('player');
             }
         } else if (computerChoice == 'paper') {
-            comments.appendChild(paperWinRockLose);
+            comments.appendChild(rockLosePaperWin);
             computerScore++;
             computerCounter.textContent = computerScore;
             if (computerScore === 5) {
@@ -157,7 +157,7 @@ rock.addEventListener('click', function () {
                 gameover('player');
             }
         } else if (computerChoice == 'paper') {
-            comments.appendChild(paperWinRockLose);
+            comments.appendChild(rockLosePaperWin);
             computerScore++;
             computerCounter.textContent = computerScore;
             if (computerScore === 5) {
@@ -183,7 +183,7 @@ paper.addEventListener('click', function () {
                 gameover('player');
             }
         } else if (computerChoice == 'scissors') {
-            comments.appendChild(scisWinPaperLose);
+            comments.appendChild(paperLoseScisWin);
             computerScore++;
             computerCounter.textContent = computerScore;
             if (computerScore === 5) {
@@ -202,7 +202,7 @@ paper.addEventListener('click', function () {
                 gameover('player');
             }
         } else if (computerChoice == 'scissors') {
-            comments.appendChild(scisWinPaperLose);
+            comments.appendChild(paperLoseScisWin);
             computerScore++;
             computerCounter.textContent = computerScore;
             if (computerScore === 5) {
@@ -228,7 +228,7 @@ scissors.addEventListener('click', function () {
                 gameover('player');
             }
         } else if (computerChoice == 'rock') {
-            comments.appendChild(rockWinScisLose);
+            comments.appendChild(sciLoseRockWin);
             computerScore++;
             computerCounter.textContent = computerScore;
             if (computerScore === 5) {
@@ -247,7 +247,7 @@ scissors.addEventListener('click', function () {
                 gameover('player');
             }
         } else if (computerChoice == 'rock') {
-            comments.appendChild(rockWinScisLose);
+            comments.appendChild(sciLoseRockWin);
             computerScore++;
             computerCounter.textContent = computerScore;
             if (computerScore === 5) {
